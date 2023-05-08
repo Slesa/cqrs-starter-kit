@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace WebFrontend.ActionFilters
 {
@@ -12,9 +9,9 @@ namespace WebFrontend.ActionFilters
         {
             if (filterContext.Result is ViewResult)
             {
-                var bag = (filterContext.Result as ViewResult).ViewBag;
-                bag.WaitStaff = StaticData.WaitStaff;
-                bag.ActiveTables = Domain.OpenTabQueries.ActiveTableNumbers();
+                var bag = (filterContext.Result as ViewResult).ViewData;
+                bag["WaitStaff"] = StaticData.WaitStaff;
+                bag["ActiveTables"] = Domain.OpenTabQueries.ActiveTableNumbers();
             }
         }
     }

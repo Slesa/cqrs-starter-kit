@@ -193,7 +193,7 @@ namespace Edument.CQRS
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        private object CreateInstanceOf(Type t)
+        object CreateInstanceOf(Type t)
         {
             return Activator.CreateInstance(t);
         }

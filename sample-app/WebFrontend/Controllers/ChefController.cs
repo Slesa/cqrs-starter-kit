@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Text.RegularExpressions;
 using Cafe.Tab;
-using System.Text.RegularExpressions;
-using WebFrontend.ActionFilters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebFrontend.Controllers
 {
-    [IncludeLayoutData]
     public class ChefController : Controller
     {
         public ActionResult Index()
