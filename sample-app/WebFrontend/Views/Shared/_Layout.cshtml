@@ -11,26 +11,49 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebFrontend</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebFrontend</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Tab" asp-action="Open">Open Tab</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Chef" asp-action="Index">Chef Todo List</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
+    
 </header>
 <div class="container">
+    <div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                <li class="nav-header">Wait Staff Todo Lists</li>
+                @foreach (var w in ViewData["WaitStaff"] as List<string>)
+                {
+                    <li>@Html.ActionLink(w, "Todo", "WaitStaff", new { id = w }, null)</li>
+                }
+                <li class="nav-header">Open Tabs</li>
+                @foreach (var t in ViewData["ActiveTables"] as List<int>)
+                {
+                    <li>@Html.ActionLink(t.ToString(), "Status", "Tab", new { id = t }, null)</li>
+                }
+            </ul>
+        </div><!--/.well -->
+    </div><!--/span-->
+
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
